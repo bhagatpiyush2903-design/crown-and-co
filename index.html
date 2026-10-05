@@ -1,0 +1,225 @@
+<title>Crown & Co.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400&family=Instrument+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: single narrow column of quiet sections; the Hair Passport card is the one bold object. */
+:root {
+  --bg: #ffffff;
+  --surface: #f6f7f8;
+  --ink: #12151a;
+  --muted: #5d646e;
+  --line: #e4e6ea;
+  --accent: #1c2b45;
+  --on-accent: #ffffff;
+  --display: "Bodoni Moda", "Didot", "Bodoni 72", Georgia, serif;
+  --body: "Instrument Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0e1116; --surface: #161a21; --ink: #f1f2f4; --muted: #9aa2ae;
+    --line: #262b34; --accent: #dfe5f0; --on-accent: #0e1116; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0e1116; --surface: #161a21; --ink: #f1f2f4; --muted: #9aa2ae;
+  --line: #262b34; --accent: #dfe5f0; --on-accent: #0e1116; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body {
+  background: var(--bg); color: var(--ink);
+  font: 400 1rem/1.65 var(--body);
+  padding-inline: 1.25rem; padding-block: 0;
+  -webkit-font-smoothing: antialiased;
+}
+.wrap { max-width: 68rem; margin-inline: auto; }
+a { color: inherit; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+header.top {
+  display: flex; justify-content: space-between; align-items: baseline; gap: 1rem;
+  padding-block: 1.5rem; border-bottom: 1px solid var(--line);
+}
+.mark { font-family: var(--display); font-size: 1.25rem; letter-spacing: .02em; }
+.mark span { font-style: italic; }
+.meta { font: 500 .72rem/1 var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+
+.hero {
+  display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr);
+  gap: 3.5rem; align-items: center; padding-block: 5rem 5.5rem;
+}
+.eyebrow { font: 500 .72rem/1 var(--mono); letter-spacing: .16em; text-transform: uppercase; color: var(--muted); margin: 0 0 1.5rem; }
+h1 {
+  font-family: var(--display); font-weight: 400; font-size: clamp(2.4rem, 6vw, 4.4rem);
+  line-height: 1.04; letter-spacing: -.01em; margin: 0 0 1.5rem; text-wrap: balance;
+}
+h1 em { font-style: italic; }
+.lede { font-size: 1.125rem; color: var(--muted); max-width: 32rem; margin: 0 0 2rem; }
+.cta-row { display: flex; flex-wrap: wrap; gap: .75rem 1.25rem; align-items: center; }
+.btn {
+  display: inline-block; background: var(--accent); color: var(--on-accent);
+  font: 500 .9rem/1 var(--body); letter-spacing: .04em; padding: 1rem 1.6rem; text-decoration: none;
+  border: 1px solid var(--accent);
+}
+.btn:hover { opacity: .88; }
+.cta-note { font-size: .85rem; color: var(--muted); }
+
+/* Hair Passport */
+.passport { border: 1px solid var(--ink); background: var(--bg); max-width: 26rem; justify-self: end; width: 100%; }
+.pp-head { display: flex; justify-content: space-between; align-items: baseline; padding: 1rem 1.25rem; border-bottom: 1px solid var(--ink); gap: 1rem; }
+.pp-head b { font-family: var(--display); font-weight: 500; font-size: 1.05rem; }
+.pp-head span { font: 400 .68rem/1 var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+.pp-who { padding: 1.25rem 1.25rem .5rem; }
+.pp-who h3 { font-family: var(--display); font-weight: 400; font-size: 1.6rem; margin: 0; line-height: 1.2; }
+.pp-who p { margin: .15rem 0 0; font-size: .85rem; color: var(--muted); }
+dl.spec { margin: 0; padding: .75rem 1.25rem 1.25rem; }
+dl.spec div { display: flex; justify-content: space-between; gap: 1rem; padding-block: .6rem; border-bottom: 1px solid var(--line); }
+dl.spec div:last-child { border-bottom: 0; }
+dl.spec dt { font: 400 .72rem/1.6 var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+dl.spec dd { margin: 0; text-align: right; font-size: .92rem; min-width: 0; }
+.pp-foot { display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; padding: .9rem 1.25rem; background: var(--surface); border-top: 1px solid var(--line); font: 400 .72rem/1.5 var(--mono); letter-spacing: .06em; color: var(--muted); }
+.pp-cap { font-size: .78rem; color: var(--muted); margin: .75rem 0 0; text-align: right; }
+
+section.block { padding-block: 5rem; border-top: 1px solid var(--line); }
+h2 { font-family: var(--display); font-weight: 400; font-size: clamp(1.8rem, 4vw, 2.7rem); line-height: 1.12; margin: 0 0 1.25rem; text-wrap: balance; letter-spacing: -.005em; }
+.two { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr); gap: 3.5rem; }
+.prose p { margin: 0 0 1.1rem; color: var(--muted); font-size: 1.05rem; max-width: 36rem; }
+.prose p strong { color: var(--ink); font-weight: 500; }
+
+ol.steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0; border: 1px solid var(--line); }
+ol.steps li { padding: 1.5rem 1.25rem 1.75rem; border-right: 1px solid var(--line); }
+ol.steps li:last-child { border-right: 0; }
+.step-n { font: 500 .72rem/1 var(--mono); letter-spacing: .14em; color: var(--muted); display: block; margin-bottom: 2.25rem; }
+ol.steps h3 { font-family: var(--display); font-weight: 500; font-size: 1.25rem; margin: 0 0 .5rem; }
+ol.steps p { margin: 0; font-size: .92rem; color: var(--muted); }
+
+.nots { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 3rem; margin: 0; padding: 0; list-style: none; }
+.nots li { padding-block: 1.1rem; border-bottom: 1px solid var(--line); font-family: var(--display); font-size: 1.35rem; display: flex; gap: .9rem; align-items: baseline; }
+.nots li span { font: 500 .7rem/1 var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+
+.founding { background: var(--accent); color: var(--on-accent); padding: 4.5rem 2rem; margin-inline: -1.25rem; }
+.founding .wrap { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 3rem; align-items: end; padding-inline: 0; }
+.founding .inner { padding-inline: 0; }
+.founding h2 { color: var(--on-accent); }
+.big { font-family: var(--display); font-size: clamp(5rem, 14vw, 9rem); line-height: .9; font-weight: 400; margin: 0; }
+.founding p { margin: 0 0 1rem; opacity: .82; max-width: 30rem; }
+.perks { list-style: none; padding: 0; margin: 1.5rem 0 2rem; display: grid; gap: .6rem; }
+.perks li { padding-block: .6rem; border-bottom: 1px solid color-mix(in srgb, var(--on-accent) 25%, transparent); font-size: .98rem; }
+.btn.inv { background: var(--on-accent); color: var(--accent); border-color: var(--on-accent); }
+.kw { font-family: var(--mono); letter-spacing: .12em; }
+
+footer { padding-block: 2.5rem 3rem; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1rem; font-size: .85rem; color: var(--muted); }
+
+@media (max-width: 52rem) {
+  .hero, .two, .founding .wrap { grid-template-columns: minmax(0, 1fr); gap: 2.5rem; }
+  .hero { padding-block: 3rem 4rem; }
+  .passport { justify-self: stretch; max-width: none; }
+  ol.steps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  ol.steps li:nth-child(2) { border-right: 0; }
+  ol.steps li:nth-child(-n+2) { border-bottom: 1px solid var(--line); }
+  .nots { grid-template-columns: minmax(0, 1fr); }
+  section.block { padding-block: 3.5rem; }
+  .founding { padding-block: 3.5rem; }
+}
+@media (max-width: 30rem) {
+  ol.steps { grid-template-columns: minmax(0, 1fr); }
+  ol.steps li { border-right: 0; border-bottom: 1px solid var(--line); }
+  ol.steps li:last-child { border-bottom: 0; }
+  .step-n { margin-bottom: 1rem; }
+  .founding { padding-inline: 1.25rem; }
+}
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <div class="mark">Crown <span>&amp;</span> Co.</div>
+    <div class="meta">Siliguri · Opening [DATE]</div>
+  </header>
+
+  <section class="hero">
+    <div>
+      <p class="eyebrow">Men's grooming studio</p>
+      <h1>Your haircut shouldn't depend on <em>which chair</em> you get.</h1>
+      <p class="lede">Most men don't have a bad barber. They have an inconsistent one. Crown documents your cut, so every visit starts where the last one ended.</p>
+      <div class="cta-row">
+        <a class="btn" href="#founding">Claim a Founding place</a>
+        <span class="cta-note">50 places. Opening in Siliguri.</span>
+      </div>
+    </div>
+    <div>
+      <div class="passport" aria-label="Example Hair Passport">
+        <div class="pp-head"><b>Hair Passport</b><span>Example</span></div>
+        <div class="pp-who">
+          <h3>Aarav S.</h3>
+          <p>Textured crop, side part</p>
+        </div>
+        <dl class="spec">
+          <div><dt>Sides</dt><dd>Grade 2 fading to 1</dd></div>
+          <div><dt>Top</dt><dd>5 cm, point-cut</dd></div>
+          <div><dt>Part</dt><dd>Left, soft</dd></div>
+          <div><dt>Beard</dt><dd>3 mm, sharp cheek line</dd></div>
+          <div><dt>Finish</dt><dd>Matte clay, light</dd></div>
+        </dl>
+        <div class="pp-foot"><span>Photo on file</span><span>Next visit: 4 weeks</span></div>
+      </div>
+      <p class="pp-cap">Every Crown cut is recorded like this.</p>
+    </div>
+  </section>
+
+  <section class="block two">
+    <h2>Three weeks later, you are explaining it all over again.</h2>
+    <div class="prose">
+      <p>You finally get a haircut you love. Next visit it is a different stylist, a different interpretation and a different result.</p>
+      <p><strong>That should be fixable.</strong> At Crown, every appointment begins with your hair, your face and how you actually like to wear it. The cut is documented, the style is saved, and your next visit builds on the last one.</p>
+      <p>Nobody has to guess what "just do what you did last time" means. We know.</p>
+    </div>
+  </section>
+
+  <section class="block">
+    <p class="eyebrow">Every appointment</p>
+    <h2>The same standard, in any chair.</h2>
+    <ol class="steps">
+      <li><span class="step-n">01</span><h3>Consult</h3><p>Fifteen minutes on your hair type, face shape and the way you wear it.</p></li>
+      <li><span class="step-n">02</span><h3>Cut</h3><p>A precise cut to a written standard, not a stylist's mood.</p></li>
+      <li><span class="step-n">03</span><h3>Record</h3><p>Your cut is photographed and saved to your Hair Passport.</p></li>
+      <li><span class="step-n">04</span><h3>Return</h3><p>We remind you at the right interval and repeat it exactly.</p></li>
+    </ol>
+  </section>
+
+  <section class="block">
+    <p class="eyebrow">What we leave out</p>
+    <h2>Good grooming, with nothing added.</h2>
+    <ul class="nots">
+      <li><span>No</span>Unnecessary treatments</li>
+      <li><span>No</span>Endless service menu</li>
+      <li><span>No</span>Luxury price tag</li>
+      <li><span>No</span>Hit-or-miss neighbourhood chair</li>
+    </ul>
+  </section>
+</div>
+
+<section class="founding" id="founding">
+  <div class="wrap">
+    <div class="inner">
+      <p class="eyebrow" style="color:inherit;opacity:.7">Founding Members</p>
+      <h2>Fifty places before we open the doors.</h2>
+      <p>Founding Members are the first people whose cut goes into a Crown Hair Passport, and they help shape what we build next.</p>
+      <ul class="perks">
+        <li>Founding pricing</li>
+        <li>Priority access to appointments</li>
+        <li>Early access to everything we build next</li>
+      </ul>
+      <p>Comment <span class="kw">CROWN</span> on our launch post and we'll send you the Founding 50 details.</p>
+      <a class="btn inv" href="#founding">Comment CROWN on Instagram</a>
+    </div>
+    <p class="big" aria-label="Fifty">50</p>
+  </div>
+</section>
+
+<div class="wrap">
+  <footer>
+    <span>Crown &amp; Co. Good grooming, consistently.</span>
+    <span>Siliguri · North Bengal</span>
+  </footer>
+</div>

@@ -223,3 +223,78 @@ footer { padding-block: 2.5rem 3rem; display: flex; justify-content: space-betwe
     <span>Siliguri · North Bengal</span>
   </footer>
 </div>
+<section id="glow-up-advisor" style="max-width:500px;margin:40px auto;padding:24px;border-radius:16px;background:#faf6f0;font-family:sans-serif;">
+  <h2 style="margin-top:0;">Find Your Glow-Up Service</h2>
+  <p>Tell us your concern and budget, get an instant recommendation.</p>
+
+  <label>Concern:</label><br/>
+  <select id="concern" style="width:100%;padding:8px;margin:6px 0 16px;">
+    <option value="frizzy hair">Frizzy hair</option>
+    <option value="dull skin">Dull skin</option>
+    <option value="thinning hair">Thinning hair</option>
+    <option value="dry scalp">Dry scalp</option>
+    <option value="uneven hair color">Uneven hair color</option>
+    <option value="unkempt beard">Unkempt beard</option>
+    <option value="rough hands and feet">Rough hands and feet</option>
+  </select><br/>
+
+  <label>Monthly grooming budget (Rs):</label><br/>
+  <input id="budget" type="number" placeholder="e.g. 1500" style="width:100%;padding:8px;margin:6px 0 16px;"/><br/>
+
+  <button id="glowUpBtn" style="padding:10px 20px;border:none;border-radius:8px;background:#b8860b;color:white;cursor:pointer;">
+    Get My Recommendation
+  </button>
+
+  <p id="glowUpResult" style="margin-top:16px;font-weight:500;"></p>
+  <p id="glowUpCount" style="margin-top:8px;font-size:14px;color:#777;"></p>
+</section>
+
+<script>
+  let visitorId = localStorage.getItem('crownVisitorId');
+  if (!visitorId) {
+    visitorId = 'v-' + Math.random().toString(36).slice(2, 10);
+    localStorage.setItem('crownVisitorId', visitorId);
+  }
+
+  async function loadGlowUpCount() {
+    try {
+      const res = await fetch('/api/glow-up-count');
+      const data = await res.json();
+      document.getElementById('glowUpCount').textContent =
+        data.count + ' glow-up plans generated so far';
+    } catch (err) {}
+  }
+  loadGlowUpCount();
+
+  document.getElementById('glowUpBtn').addEventListener('click', async () => {
+    const concern = document.getElementById('concern').value;
+    const budget = document.getElementById('budget').value;
+    const resultEl = document.getElementById('glowUpResult');
+
+    if (!budget) {
+      resultEl.textContent = 'Please enter your monthly budget.';
+      return;
+    }
+
+    resultEl.textContent = 'Thinking...';
+
+    try {
+      const res = await fetch('/api/glow-up', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ concern: concern, budget: budget, visitorId: visitorId }),
+      });
+      const data = await res.json();
+
+      if (!res.ok) {
+        resultEl.textContent = data.error || 'Something went wrong.';
+        return;
+      }
+
+      resultEl.textContent = data.result;
+      loadGlowUpCount();
+    } catch (err) {
+      resultEl.textContent = 'Something went wrong. Please try again.';
+    }
+  });
+</script>
